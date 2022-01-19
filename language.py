@@ -50,7 +50,13 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def buildVocabulary(corpus):
-    return
+    unigramList=[]
+    for line in corpus:
+        for word in line:
+            if word not in unigramList:
+                unigramList.append(word)   
+    return unigramList
+
 
 
 '''
