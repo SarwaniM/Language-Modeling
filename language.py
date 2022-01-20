@@ -4,6 +4,7 @@ Name:
 Roll No:
 """
 
+from itertools import count
 import language_tests as test
 
 project = "Language" # don't edit this
@@ -150,7 +151,12 @@ Parameters: list of strs ; dict mapping strs to ints ; int
 Returns: list of floats
 '''
 def buildUnigramProbs(unigrams, unigramCounts, totalCount):
-    return
+    probabiltyList=[]
+    for i in range(len(unigrams)):
+        count=unigramCounts[unigrams[i]]
+        probability=count/totalCount
+        probabiltyList.append(probability) 
+    return probabiltyList
 
 
 '''
