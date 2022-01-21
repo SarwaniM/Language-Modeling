@@ -152,10 +152,14 @@ Returns: list of floats
 '''
 def buildUnigramProbs(unigrams, unigramCounts, totalCount):
     probabiltyList=[]
+    count=0
     for i in range(len(unigrams)):
-        count=unigramCounts[unigrams[i]]
-        probability=count/totalCount
-        probabiltyList.append(probability) 
+        if unigrams[i] in unigramCounts:
+            count=unigramCounts[unigrams[i]]
+            probability=count/totalCount
+            probabiltyList.append(probability) 
+        else:
+            probabiltyList.append(0)
     return probabiltyList
 
 
@@ -264,7 +268,13 @@ Parameters: 2D list of strs
 Returns: None
 '''
 def graphTopStartWords(corpus):
-    return
+    unigramlist=getStartWords(corpus)
+    unicount=countStartWords(corpus)
+    count=len(corpus)
+    UniProb=buildUnigramProbs(unigramlist,unicount,count)
+    topWord=getTopWords(50,unigramlist,UniProb,ignore)
+    barPlot(topWord,"Top Start Words")
+    return None
 
 
 '''
@@ -275,8 +285,6 @@ Returns: None
 '''
 def graphTopNextWords(corpus, word):
     return
-
-
 '''
 setupChartData(corpus1, corpus2, topWordCount)
 #6 [Hw6]
@@ -284,7 +292,7 @@ Parameters: 2D list of strs ; 2D list of strs ; int
 Returns: dict mapping strs to (lists of values)
 '''
 def setupChartData(corpus1, corpus2, topWordCount):
-    return
+    return 
 
 
 '''
