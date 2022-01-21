@@ -326,6 +326,8 @@ Parameters: 2D list of strs ; str ; 2D list of strs ; str ; int ; str
 Returns: None
 '''
 def graphTopWordsSideBySide(corpus1, name1, corpus2, name2, numWords, title):
+    comparingDict=setupChartData(corpus1, corpus2, numWords)
+    sideBySideBarPlots(comparingDict["topWords"], comparingDict["corpus1Probs"],comparingDict["corpus2Probs"], name1, name2, title)
     return
 
 
@@ -336,6 +338,8 @@ Parameters: 2D list of strs ; 2D list of strs ; int ; str
 Returns: None
 '''
 def graphTopWordsInScatterplot(corpus1, corpus2, numWords, title):
+    comparingDict=setupChartData(corpus1, corpus2, numWords)
+    scatterPlot( comparingDict["corpus1Probs"],comparingDict["corpus2Probs"], comparingDict["topWords"], title)
     return
 
 
