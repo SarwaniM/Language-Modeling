@@ -17,7 +17,15 @@ Parameters: str
 Returns: 2D list of strs
 '''
 def loadBook(filename):
-    return
+    openFile=open(filename,"r")
+    lines = openFile.read()
+    linesList=[]
+    for line in lines.split("\n"):
+        if len(line) > 0:
+           wordsList=line.split(" ")
+           linesList.append(wordsList) 
+    return linesList
+
 
 
 '''
@@ -27,7 +35,12 @@ Parameters: 2D list of strs
 Returns: int
 '''
 def getCorpusLength(corpus):
-    return
+    wordCount=0
+    for line in corpus:
+        for word in line:
+            wordCount+=1
+    return wordCount
+
 
 
 '''
@@ -37,7 +50,13 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def buildVocabulary(corpus):
-    return
+    unigramList=[]
+    for line in corpus:
+        for word in line:
+            if word not in unigramList:
+                unigramList.append(word)   
+    return unigramList
+
 
 
 '''
