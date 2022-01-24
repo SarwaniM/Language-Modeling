@@ -17,7 +17,15 @@ Parameters: str
 Returns: 2D list of strs
 '''
 def loadBook(filename):
-    return
+    openFile=open(filename,"r")
+    lines = openFile.read()
+    linesList=[]
+    for line in lines.split("\n"):
+        if len(line) > 0:
+           wordsList=line.split(" ")
+           linesList.append(wordsList) 
+    return linesList
+
 
 
 '''
@@ -27,7 +35,12 @@ Parameters: 2D list of strs
 Returns: int
 '''
 def getCorpusLength(corpus):
-    return
+    wordCount=0
+    for line in corpus:
+        for word in line:
+            wordCount+=1
+    return wordCount
+
 
 
 '''
@@ -37,7 +50,13 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def buildVocabulary(corpus):
-    return
+    unigramList=[]
+    for line in corpus:
+        for word in line:
+            if word not in unigramList:
+                unigramList.append(word)   
+    return unigramList
+
 
 
 '''
@@ -47,7 +66,14 @@ Parameters: 2D list of strs
 Returns: dict mapping strs to ints
 '''
 def countUnigrams(corpus):
-    return
+    unigramDict={}
+    for line in corpus:
+       for word in line:
+           if word in unigramDict:
+                unigramDict[word]+=1
+           else:
+                unigramDict[word] = 1       
+    return unigramDict
 
 
 '''
@@ -57,7 +83,13 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def getStartWords(corpus):
-    return
+    startWords=[]
+    for line in corpus:
+        startWord= line[0]
+        if startWord not in startWords:
+            startWords.append(startWord)   
+    return startWords
+
 
 
 '''
@@ -67,7 +99,14 @@ Parameters: 2D list of strs
 Returns: dict mapping strs to ints
 '''
 def countStartWords(corpus):
-    return
+    startWordDict={}
+    for line in corpus:
+        startWord= line[0]
+        if startWord in startWordDict:
+                startWordDict[startWord]+=1
+        else:
+                startWordDict[startWord] = 1       
+    return startWordDict
 
 
 '''
@@ -77,7 +116,18 @@ Parameters: 2D list of strs
 Returns: dict mapping strs to (dicts mapping strs to ints)
 '''
 def countBigrams(corpus):
-    return
+    bigramDict={}
+    for line in corpus:
+        for i in range(len(line)-1):
+            firstWord = line[i]
+            secondWord = line[i+1]
+            if firstWord not in bigramDict:
+                bigramDict[firstWord]={}
+            if secondWord not in bigramDict[firstWord]:
+                bigramDict[firstWord][secondWord]=1
+            else:
+                bigramDict[firstWord][secondWord]+=1    
+    return bigramDict
 
 
 ### WEEK 2 ###
